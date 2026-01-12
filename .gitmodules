@@ -1,0 +1,18 @@
+[submodule "service"]
+	path = service
+	url = ./service/
+[submodule "app"]
+	path = app
+	url = ./app/
+[submodule "driver"]
+	path = driver
+	url = ./driver/
+[submodule "a4-menu"]
+	path = a4-menu
+	url = ./a4-menu/
+[submodule "landing"]
+	path = landing
+	url = ./landing/
+[submodule "docs"]
+	path = docs
+	url = ./docs/
