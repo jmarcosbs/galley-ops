@@ -1,0 +1,219 @@
+{
+  "info": {
+    "name": "Marinheiros API",
+    "_postman_id": "1c1e2b4c-0000-4000-8000-000000000000",
+    "description": "Collection básica para o backend Marinheiros (Django). Ajuste `baseUrl`, tokens e UUIDs reais antes de enviar.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Obter token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"garcom\",\n  \"password\": \"senha\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/users/token/",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "users", "token", ""]
+        },
+        "description": "Retorna `access` e `refresh` (JWT SimpleJWT)."
+      }
+    },
+    {
+      "name": "Auth - Refresh token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"refresh\": \"{{refreshToken}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/users/token/refresh/",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "users", "token", "refresh", ""]
+        },
+        "description": "Troca o refresh por um novo access. Mantém o refresh se não vier outro."
+      }
+    },
+    {
+      "name": "Menu - Listar cardápio",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/menu/",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "menu", ""]
+        },
+        "description": "Lista completa do cardápio (categorias, pratos, acompanhamentos)."
+      }
+    },
+    {
+      "name": "Pedidos - Criar pedido",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ticket\": 12,\n  \"dishes\": [\n    {\n      \"dish_uuid\": \"{{dishUuid}}\",\n      \"amount\": 2,\n      \"dish_note\": \"sem cebola\",\n      \"side_dishes\": [\n        { \"side_dish_uuid\": \"{{sideDishUuid}}\" }\n      ]\n    }\n  ],\n  \"general_note\": \"mesa externa\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/order/",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "order", ""]
+        },
+        "description": "Cria/usa ticket aberto ou parcial e registra o pedido."
+      }
+    },
+    {
+      "name": "Mesas - Listar abertas/parciais",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/open-tables/",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "open-tables", ""]
+        },
+        "description": "Retorna mesas abertas/parciais com itens pendentes e total."
+      }
+    },
+    {
+      "name": "Mesas - Fechamento total/parcial",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ticket_number\": 12,\n  \"is_outside\": false,\n  \"items\": [\n    { \"dish_order_uuid\": \"{{dishOrderUuid}}\", \"dish_order_quantity\": 1 }\n  ],\n  \"additions_percentage\": 10,\n  \"discounts_percentage\": 0\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/ticket-settlement/",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "ticket-settlement", ""]
+        },
+        "description": "Registra fechamento total ou parcial. Acréscimo obrigatório de 10% (já aplicado em `additions_percentage`). Se zerar todos itens do ticket, status muda para closed; senão, partially_paid."
+      }
+    },
+    {
+      "name": "Mesas - Atualizar número/local",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ticket_uuid\": \"{{ticketUuid}}\",\n  \"number\": 12,\n  \"is_outside\": false\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/tickets/update/",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "tickets", "update", ""]
+        },
+        "description": "Atualiza o número da mesa e se ela pertence à área externa (prefixo R). Exige mesa aberta ou parcialmente fechada."
+      }
+    },
+    {
+      "name": "Mesas - Reimprimir fechamento",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/ticket-settlement/{{settlementUuid}}/reprint/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "ticket-settlement",
+            "{{settlementUuid}}",
+            "reprint",
+            ""
+          ]
+        },
+        "description": "Solicita nova impressão da conta através do driver integrado."
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8002"
+    },
+    {
+      "key": "accessToken",
+      "value": ""
+    },
+    {
+      "key": "refreshToken",
+      "value": ""
+    },
+    {
+      "key": "dishUuid",
+      "value": ""
+    },
+    {
+      "key": "sideDishUuid",
+      "value": ""
+    },
+    {
+      "key": "dishOrderUuid",
+      "value": ""
+    },
+    {
+      "key": "settlementUuid",
+      "value": ""
+    }
+  ]
+}

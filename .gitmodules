@@ -1,18 +1,15 @@
 [submodule "service"]
 	path = service
-	url = ./service/
+	url = https://github.com/jmarcosbs/galley-ops-service.git
 [submodule "app"]
 	path = app
-	url = ./app/
+	url = https://github.com/jmarcosbs/galley-ops-app.git
 [submodule "driver"]
 	path = driver
-	url = ./driver/
+	url = https://github.com/jmarcosbs/galley-ops-driver.git
 [submodule "a4-menu"]
 	path = a4-menu
-	url = ./a4-menu/
+	url = https://github.com/jmarcosbs/galley-ops-a4-menu.git
 [submodule "landing"]
 	path = landing
-	url = ./landing/
-[submodule "docs"]
-	path = docs
-	url = ./docs/
+	url = https://github.com/jmarcosbs/galley-ops-landing.git
