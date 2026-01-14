@@ -1,77 +1,75 @@
-# Galley Ops
+# 🚢 🍤 Galley Ops
 
-Galley Ops reúne todos os módulos que construí para digitalizar a operação de um restaurante familiar: da vitrine pública ao envio da comanda e emissão fiscal. O sistema nasceu como um PWA simples que só imprimia pedidos e evoluiu para uma plataforma completa de cardápio, pedidos, contas, NFC‑e e gerenciamento interno.
+Galley Ops is a fully bootstrapped platform to digitize a family-owned restaurant, spanning from the public landing page to order dispatch and fiscal compliance. It began as a simple ticket-printing PWA and evolved into a complete system for menu management, orders, settlements, NFC-e emission, and internal dashboards.
 
-> Idealização, desenvolvimento e evolução contínua são feitos por mim, de forma independente e sem custo para o restaurante.
+## Quick overview
 
-## Visão rápida
-
-- **Landing em Astro** com SEO, schema.org e alternância PT/EN/ES.
-- **Menu A4** pronto para impressão com tipografia editorial e cortes configurados.
-- **Aplicativo interno** (Next.js 16, Tailwind, MUI, Radix, PWA) para montagem de pedidos com login e permissões por função.
-- **Backend Django 5** com DRF, Channels, Celery e emissão NFC‑e em produção via SEFAZ.
-- **Driver FastAPI + pywin32** que despacha comandas e contas para impressoras ESC/P.
-- **Coleções Postman** versionadas para testar todo o ecossistema.
+- **Astro landing page** with SEO, schema.org, and PT/EN/ES language switcher.
+- **A4 printable menu** with editorial typography and trim marks.
+- **Internal app** (Next.js 16, Tailwind, MUI, Radix, PWA) for building orders with role-based logins.
+- **Django 5 backend** (DRF, Channels, Celery) issuing NFC‑e via SEFAZ in production.
+- **FastAPI + pywin32 driver** that prints tickets and bills on ESC/P printers.
+- **Postman collections** covering the entire ecosystem.
 
 ```
 .
-├── landing/      # Landing page Astro (cardápio público e SEO)
-├── a4-menu/      # Versão impressa do cardápio
-├── app/          # Aplicativo interno (Next.js PWA)
-├── service/      # Backend Django + Celery + Channels
-├── driver/       # API de impressão FastAPI
-└── docs/         # Postman collections e instruções rápidas
+├── landing/      # Astro landing page (public menu + SEO)
+├── a4-menu/      # Printable A4 menu
+├── app/          # Internal Next.js PWA
+├── service/      # Django backend + Celery + Channels
+├── driver/       # FastAPI printing bridge
+└── docs/         # Postman collections and docs
 ```
 
-## Destaques por módulo
+## Module highlights
 
 ### Landing (`landing/`)
-- Construída em **Astro 5** com suporte a SSR estático, sitemap e metadados completos.
-- Textos e CTAs traduzidos em PT‑BR, EN e ES com persistência da escolha via localStorage.
-- Página `/menu` consome `PUBLIC_MENU_API` para mostrar o mesmo cardápio exposto no app.
-- Makefile com alvos `build`, `deploy` e comandos para controlar o Nginx da VPS.
+- Built with **Astro 5** (static SSR), sitemap, and SEO-ready metadata.
+- PT‑BR / EN / ES copy persisted via localStorage for returning visitors.
+- `/menu` consumes `PUBLIC_MENU_API`, mirroring the same menu used internally.
+- Makefile targets (`build`, `deploy`, nginx helpers) streamline deployments.
 
-### Cardápio impresso (`a4-menu/`)
-- HTML/CSS puro com `@page` configurado para A4, margens e tipografia Playfair + Manrope.
-- Layout em “livro” com colunas responsivas; uso para gerar PDF e levar para a mesa.
+### Printable menu (`a4-menu/`)
+- Pure HTML/CSS with tuned `@page`, margins, and Playfair + Manrope typography.
+- Book-style layout (responsive columns) used to generate PDFs for the tables.
 
-### App interno (`app/`)
-- **Next.js 16** exportado como estático com PWA habilitado por `@ducanh2912/next-pwa`.
-- UI em Tailwind + Radix + componentes do shadcn, temas customizados para o restaurante.
-- Hooks (`useMenu`, `useTables`, `useAuth`) cuidam de chamadas autenticadas, WebSockets e QR code scanner.
-- `OrderContext` centraliza o estado do pedido, guarda dados em localStorage e gera payload idempotente para o backend.
-- Dashboard com impressão do serviço (10%) e board em tempo real das mesas através do canal WS.
+### Internal app (`app/`)
+- **Next.js 16** exported as a static PWA (using `@ducanh2912/next-pwa`).
+- Tailwind + Radix + shadcn components themed for the restaurant identity.
+- Hooks (`useMenu`, `useTables`, `useAuth`) handle authenticated fetches, WebSockets, and QR scanning.
+- `OrderContext` persists order data locally and emits idempotent payloads.
+- Dashboard prints the 10% service report and shows tables in real time.
 
 ### Backend (`service/`)
-- **Django 5 + DRF** para API REST, Channels para WebSockets de mesas e Celery dividido em filas (`default`, `notifications`, `printing`).
-- Apps principais: `menu` (categorias, traduções e acompanhamentos), `orders` (tickets, settlements, dashboards) e `nfce` (integração SEFAZ com certificado A1 usando PyNFe).
-- Emite notas fiscais eletrônicas de consumidor (NFC‑e) oficiais do governo brasileiro em produção.
-- Permite logins específicos (garçom, caixa, administrador) com permissões ajustadas a cada função.
-- Tasks assíncronas notificam Telegram, disparam impressões e mantêm o painel sincronizado.
-- `docker-compose.yml` sobe web, ASGI, três workers Celery e Redis para desenvolvimento.
+- **Django 5 + DRF** REST API, Channels for WebSockets, Celery queues (`default`, `notifications`, `printing`).
+- Core apps: `menu`, `orders`, `nfce` (PyNFe + certificate A1 for SEFAZ).
+- Issues official NFC‑e invoices in production.
+- Role-based logins (waiter, cashier, admin) with tailored permissions.
+- Celery tasks send Telegram alerts, trigger printers, and refresh open tables.
+- `docker-compose.yml` runs web, ASGI, three Celery workers, and Redis locally.
 
-### Driver de impressão (`driver/`)
-- **FastAPI** que recebe pedidos/contas/resumos e os repassa para scripts pywin32.
-- Scripts separados para copa, cozinha, conta e relatório diário (`print_bar.py`, `print_kitchen.py`, `print_bill.py`, `print_dashboard.py`).
-- Usa variáveis de ambiente para selecionar impressoras e aplica tratamento de erros padronizado.
+### Printing driver (`driver/`)
+- **FastAPI** service that receives payloads and hands them to pywin32 scripts.
+- Dedicated scripts for bar, kitchen, bill, and daily dashboard printing.
+- Printer selection via environment variables with standardized error handling.
 
-### Documentação (`docs/`)
-- Coleções Postman (`service.postman_collection.json`, `printer.postman_collection.json`) para testar autenticação, pedidos, settlements, dashboards e o driver.
-- README dentro de `docs/` explica variáveis de ambiente sugeridas e como importar as coleções.
+### Docs (`docs/`)
+- Postman collections (`service.postman_collection.json`, `printer.postman_collection.json`) covering auth, menu, orders, settlements, dashboard, and printer endpoints.
+- README explains the required environment variables and import instructions.
 
-## Como rodar
+## How to run
 
-> Cada pasta tem seu próprio README/Makefile, mas deixei um resumo rápido aqui.
+> Each directory ships its own README/Makefile; below is the condensed version.
 
-1. **Backend**: configurar `.env`, instalar dependências e subir com `docker compose up` em `service/`. Ele expõe a API em `http://localhost:8002` e o WS em `http://localhost:8006`.
-2. **App interno**: em `app/`, criar `.env.local` apontando `NEXT_PUBLIC_API_BASE_URL` e `NEXT_PUBLIC_WS_BASE_URL`, instalar deps (`npm install`) e rodar `npm run dev`.
-3. **Landing**: em `landing/`, `npm install` e `npm run dev` (porta padrão 4321). O Makefile ajuda a buildar e publicar.
-4. **Driver**: em `driver/`, criar `.env` com as impressoras, instalar deps (`pip install -r requirements.txt`) e iniciar `uvicorn main:app`.
-5. **Cardápio A4**: abrir `a4-menu/index.html` no navegador ou gerar PDF pelo próprio browser.
+1. **Backend** – configure `.env`, install deps, run `docker compose up` in `service/`. API lives at `http://localhost:8002`, WebSocket at `http://localhost:8006`.
+2. **Internal app** – inside `app/`, create `.env.local` with `NEXT_PUBLIC_API_BASE_URL` + `NEXT_PUBLIC_WS_BASE_URL`, then `npm install && npm run dev`.
+3. **Landing** – `npm install && npm run dev` in `landing/` (port 4321). Makefile helps deploy.
+4. **Driver** – add `.env` with printer names, `pip install -r requirements.txt`, run `uvicorn main:app`.
+5. **A4 menu** – open `a4-menu/index.html` in the browser or print/save as PDF.
 
-## Status e próximos passos
+## Status & next steps
 
-- Sistema em funcionamento e já utilizado diariamente, substituindo totalmente o fluxo em papel e caneta.
-- Entrega ganhos reais de velocidade no atendimento e no fechamento de contas.
-- Continuação do desenvolvimento com melhorias graduais (testes automatizados, monitoramento, novos relatórios).
-- Projeto segue ativo e evoluindo.
+- Live in production, fully replacing the old paper-and-pen workflow.
+- Tangible gains in service speed and bill settlement.
+- Roadmap: automated tests, monitoring, new operational reports.
+- The project remains active and keeps evolving.
