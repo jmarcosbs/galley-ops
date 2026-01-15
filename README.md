@@ -2,6 +2,7 @@
 
 Galley Ops is a fully bootstrapped platform to digitize a family-owned restaurant, spanning from the public landing page to order dispatch and fiscal compliance. It began as a simple ticket-printing PWA and evolved into a complete system for menu management, orders, settlements, NFC-e emission, and internal dashboards.
 
+
 ## Quick overview
 
 - **Astro landing page** with SEO, schema.org, and PT/EN/ES language switcher.
@@ -56,6 +57,20 @@ Galley Ops is a fully bootstrapped platform to digitize a family-owned restauran
 ### Docs (`docs/`)
 - Postman collections (`service.postman_collection.json`, `printer.postman_collection.json`) covering auth, menu, orders, settlements, dashboard, and printer endpoints.
 - README explains the required environment variables and import instructions.
+
+## Clonando o repositório
+
+O projeto possui submódulos git essenciais para o backend e utilitários. Ao clonar, execute o comando abaixo para baixar tudo em um só passo:
+
+```bash
+git clone --recurse-submodules https://github.com/jmarcosbs/galley-ops
+```
+
+Se alguém já tiver feito `git clone` simples, basta rodar dentro da pasta clonada:
+
+```bash
+git submodule update --init --recursive
+```
 
 ## How to run
 
