@@ -82,6 +82,8 @@ Galley Ops is a fully bootstrapped platform to digitize a family-owned restauran
 - Roadmap: automated tests, monitoring, new operational reports.
 - The project remains active and keeps evolving.
 
+## Preview 
+
 <div align="center">
   <img src="https://github.com/user-attachments/assets/10f04383-28e0-4f73-89e9-b15dab5cba23" alt="Tela 1" width="220" style="margin:0 10px 10px 0;" />
   <img src="https://github.com/user-attachments/assets/421f51b5-0a7e-44a9-a127-a4ad8d2e5de5" alt="Tela 2" width="220" style="margin:0 10px 10px 0;" />
