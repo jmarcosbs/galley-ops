@@ -67,12 +67,12 @@ Galley Ops is a fully bootstrapped platform to digitize a family-owned restauran
 4. **Driver** – add `.env` with printer names, `pip install -r requirements.txt`, run `uvicorn main:app`.
 5. **A4 menu** – open `a4-menu/index.html` in the browser or print/save as PDF.
 
-## Personalização do branding
+## Branding customization
 
-- **Landing (Astro)** – todas as informações públicas (nome, slogan, endereço, redes, SEO, cópias PT/EN/ES) são lidas de variáveis `PUBLIC_BRAND_*` descritas em `landing/.env`. O módulo `landing/src/data/brand.ts` centraliza o parsing e pode ser extendido para outros campos.
-- **App interno (Next.js)** – crie `app/.env.local` a partir de `app/.env.local.example` e defina `NEXT_PUBLIC_BRAND_*` / `NEXT_PUBLIC_PWA_*` para atualizar cabeçalhos, login e metadados da PWA sem tocar no código.
-- **Material impresso e seeds** – os cardápios em `a4-menu/` e os comandos Django em `service/menu/management/commands/` já usam nomes neutros (ex.: “Camarão da Casa”). Ajuste livremente os textos ou replique seu cardápio.
-- **Coleções + driver** – `docs/*.postman_collection.json` e `driver/README.md` agora descrevem a API de forma genérica. Atualize os campos de exemplo (`company_name`, `company_address` etc.) conforme o cliente.
+- **Landing (Astro)** – all public information (name, slogan, address, social links, SEO, PT/EN/ES copy) is read from the `PUBLIC_BRAND_*` variables defined in `landing/.env`. The `landing/src/data/brand.ts` module centralizes the parsing and can be extended to other fields.
+- **Internal app (Next.js)** – create `app/.env.local` from `app/.env.local.example` and set `NEXT_PUBLIC_BRAND_*` / `NEXT_PUBLIC_PWA_*` to update headers, login, and PWA metadata without touching the code.
+- **Printed material and seeds** – the menus in `a4-menu/` and the Django commands in `service/menu/management/commands/` already use neutral names (e.g., “Camarão da Casa”). Adjust the texts freely or replicate your menu.
+- **Collections + driver** – `docs/*.postman_collection.json` and `driver/README.md` now describe the API generically. Update the sample fields (`company_name`, `company_address`, etc.) for each client.
   
 
 ## Status & next steps
@@ -93,7 +93,6 @@ Galley Ops is a fully bootstrapped platform to digitize a family-owned restauran
   <img src="https://github.com/user-attachments/assets/00b29dab-56b7-488c-a7bc-d4aba30ff790" alt="Tela 6" width="220" style="margin:0 10px 10px 0;" />
   <img src="https://github.com/user-attachments/assets/7d55acda-74c5-4636-bf1f-adc53622673e" alt="Tela 7" width="220" style="margin:0 10px 10px 0;" />
 </div>
-
 
 
 
