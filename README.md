@@ -87,11 +87,11 @@ Galley Ops is a fully bootstrapped platform to digitize a family-owned restauran
 <div align="center">
   <img src="https://github.com/user-attachments/assets/10f04383-28e0-4f73-89e9-b15dab5cba23" alt="Tela 1" width="220" style="margin:0 10px 10px 0;" />
   <img src="https://github.com/user-attachments/assets/421f51b5-0a7e-44a9-a127-a4ad8d2e5de5" alt="Tela 2" width="220" style="margin:0 10px 10px 0;" />
+  <img src="https://github.com/user-attachments/assets/7d55acda-74c5-4636-bf1f-adc53622673e" alt="Tela 7" width="220" style="margin:0 10px 10px 0;" />
   <img src="https://github.com/user-attachments/assets/62ff2b3c-808c-4f5a-b68b-14d5bfb346f8" alt="Tela 3" width="220" style="margin:0 10px 10px 0;" />
   <img src="https://github.com/user-attachments/assets/157d4edc-26e3-4fdb-913b-198e1c224ad6" alt="Tela 4" width="220" style="margin:0 10px 10px 0;" />
   <img src="https://github.com/user-attachments/assets/7b195907-9cb4-4e36-8a11-27bc7f0fe5b3" alt="Tela 5" width="220" style="margin:0 10px 10px 0;" />
   <img src="https://github.com/user-attachments/assets/00b29dab-56b7-488c-a7bc-d4aba30ff790" alt="Tela 6" width="220" style="margin:0 10px 10px 0;" />
-  <img src="https://github.com/user-attachments/assets/7d55acda-74c5-4636-bf1f-adc53622673e" alt="Tela 7" width="220" style="margin:0 10px 10px 0;" />
 </div>
 
 
