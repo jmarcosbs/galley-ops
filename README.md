@@ -73,6 +73,7 @@ Galley Ops is a fully bootstrapped platform to digitize a family-owned restauran
 - **App interno (Next.js)** – crie `app/.env.local` a partir de `app/.env.local.example` e defina `NEXT_PUBLIC_BRAND_*` / `NEXT_PUBLIC_PWA_*` para atualizar cabeçalhos, login e metadados da PWA sem tocar no código.
 - **Material impresso e seeds** – os cardápios em `a4-menu/` e os comandos Django em `service/menu/management/commands/` já usam nomes neutros (ex.: “Camarão da Casa”). Ajuste livremente os textos ou replique seu cardápio.
 - **Coleções + driver** – `docs/*.postman_collection.json` e `driver/README.md` agora descrevem a API de forma genérica. Atualize os campos de exemplo (`company_name`, `company_address` etc.) conforme o cliente.
+  
 
 ## Status & next steps
 
@@ -80,3 +81,14 @@ Galley Ops is a fully bootstrapped platform to digitize a family-owned restauran
 - Tangible gains in service speed and bill settlement.
 - Roadmap: automated tests, monitoring, new operational reports.
 - The project remains active and keeps evolving.
+
+<img width="1440" height="2960" alt="localhost_4321_(Samsung Galaxy S8+)" src="https://github.com/user-attachments/assets/10f04383-28e0-4f73-89e9-b15dab5cba23" /><img width="1440" height="2960" alt="localhost_4321_menu(Samsung Galaxy S8+)" src="https://github.com/user-attachments/assets/421f51b5-0a7e-44a9-a127-a4ad8d2e5de5" />
+<img width="1440" height="2960" alt="localhost_3000_(Samsung Galaxy S8+)" src="https://github.com/user-attachments/assets/62ff2b3c-808c-4f5a-b68b-14d5bfb346f8" />
+<img width="1440" height="2960" alt="localhost_3000_(Samsung Galaxy S8+) (1)" src="https://github.com/user-attachments/assets/157d4edc-26e3-4fdb-913b-198e1c224ad6" /><img width="1440" height="2960" alt="localhost_3000_(Samsung Galaxy S8+) (2)" src="https://github.com/user-attachments/assets/7b195907-9cb4-4e36-8a11-27bc7f0fe5b3" /><img width="1440" height="2960" alt="localhost_3000_(Samsung Galaxy S8+) (3)" src="https://github.com/user-attachments/assets/00b29dab-56b7-488c-a7bc-d4aba30ff790" />
+<img width="1440" height="2960" alt="localhost_3000_(Samsung Galaxy S8+) (4)" src="https://github.com/user-attachments/assets/7d55acda-74c5-4636-bf1f-adc53622673e" />
+
+
+
+
+
+
