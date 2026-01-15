@@ -67,6 +67,13 @@ Galley Ops is a fully bootstrapped platform to digitize a family-owned restauran
 4. **Driver** – add `.env` with printer names, `pip install -r requirements.txt`, run `uvicorn main:app`.
 5. **A4 menu** – open `a4-menu/index.html` in the browser or print/save as PDF.
 
+## Personalização do branding
+
+- **Landing (Astro)** – todas as informações públicas (nome, slogan, endereço, redes, SEO, cópias PT/EN/ES) são lidas de variáveis `PUBLIC_BRAND_*` descritas em `landing/.env`. O módulo `landing/src/data/brand.ts` centraliza o parsing e pode ser extendido para outros campos.
+- **App interno (Next.js)** – crie `app/.env.local` a partir de `app/.env.local.example` e defina `NEXT_PUBLIC_BRAND_*` / `NEXT_PUBLIC_PWA_*` para atualizar cabeçalhos, login e metadados da PWA sem tocar no código.
+- **Material impresso e seeds** – os cardápios em `a4-menu/` e os comandos Django em `service/menu/management/commands/` já usam nomes neutros (ex.: “Camarão da Casa”). Ajuste livremente os textos ou replique seu cardápio.
+- **Coleções + driver** – `docs/*.postman_collection.json` e `driver/README.md` agora descrevem a API de forma genérica. Atualize os campos de exemplo (`company_name`, `company_address` etc.) conforme o cliente.
+
 ## Status & next steps
 
 - Live in production, fully replacing the old paper-and-pen workflow.

@@ -1,8 +1,8 @@
 {
   "info": {
-    "name": "Marinheiros API",
+    "name": "Galley Ops Service API",
     "_postman_id": "1c1e2b4c-0000-4000-8000-000000000000",
-    "description": "Collection básica para o backend Marinheiros (Django). Ajuste `baseUrl`, tokens e UUIDs reais antes de enviar.",
+    "description": "Collection básica para o backend Django utilizado no Galley Ops. Ajuste `baseUrl`, tokens e UUIDs reais antes de enviar.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [

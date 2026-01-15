@@ -1,6 +1,6 @@
 # Documentacao do diretorio `docs`
 
-Este diretorio guarda as colecoes Postman usadas para testar rapidamente os servicos do ecossistema Marinheiros sem depender do aplicativo ou da dashboard. Use-o para importar requests pre-configurados e substituir apenas os valores sensiveis (URLs, tokens e UUIDs reais).
+Este diretorio guarda as colecoes Postman usadas para testar rapidamente os servicos do ecossistema Galley Ops (backend + driver) sem depender do aplicativo ou da dashboard. Use-o para importar requests pre-configurados e substituir apenas os valores sensiveis (URLs, tokens e UUIDs reais).
 
 ## Como importar no Postman
 1. Abra o Postman e clique em **Import**.
@@ -10,7 +10,7 @@ Este diretorio guarda as colecoes Postman usadas para testar rapidamente os serv
 
 > Recomendacao: mantenha uma collection environment (ex.: `Local`, `Staging`) para facilitar a troca de `baseUrl`/`base_url` e credenciais quando alternar entre ambientes.
 
-## `service.postman_collection.json` (Marinheiros API)
+## `service.postman_collection.json` (API do backend)
 
 Colecao principal do backend Django exposto no servico `service/`. O valor padrao de `baseUrl` eh `http://localhost:8002`, o mesmo utilizado pelo `docker-compose.yml` local.
 
@@ -31,7 +31,7 @@ Colecao principal do backend Django exposto no servico `service/`. O valor padra
 
 Os corpos de exemplo disponibilizam o formato aceito pelo backend. Ajuste `ticket`, `dishes`, quantidades e notas de acordo com o fluxo real capturado pela dashboard ou pelo app dos garcons.
 
-## `printer.postman_collection.json` (Printer API)
+## `printer.postman_collection.json` (API do driver)
 
 Colecao dedicada ao driver de impressao em `driver/`. Por padrao usa `base_url = http://localhost:8000` (porta exposta pelo `uvicorn main:app --host 0.0.0.0 --port 8000`).
 
