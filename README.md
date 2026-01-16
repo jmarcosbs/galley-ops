@@ -82,12 +82,13 @@ git submodule update --init --recursive
 4. **Driver** – add `.env` with printer names, `pip install -r requirements.txt`, run `uvicorn main:app`.
 5. **A4 menu** – open `a4-menu/index.html` in the browser or print/save as PDF.
 
-## Personalização do branding
+## Branding customization
 
-- **Landing (Astro)** – todas as informações públicas (nome, slogan, endereço, redes, SEO, cópias PT/EN/ES) são lidas de variáveis `PUBLIC_BRAND_*` descritas em `landing/.env`. O módulo `landing/src/data/brand.ts` centraliza o parsing e pode ser extendido para outros campos.
-- **App interno (Next.js)** – crie `app/.env.local` a partir de `app/.env.local.example` e defina `NEXT_PUBLIC_BRAND_*` / `NEXT_PUBLIC_PWA_*` para atualizar cabeçalhos, login e metadados da PWA sem tocar no código.
-- **Material impresso e seeds** – os cardápios em `a4-menu/` e os comandos Django em `service/menu/management/commands/` já usam nomes neutros (ex.: “Camarão da Casa”). Ajuste livremente os textos ou replique seu cardápio.
-- **Coleções + driver** – `docs/*.postman_collection.json` e `driver/README.md` agora descrevem a API de forma genérica. Atualize os campos de exemplo (`company_name`, `company_address` etc.) conforme o cliente.
+- **Landing (Astro)** – all public information (name, slogan, address, social links, SEO, PT/EN/ES copy) is read from the `PUBLIC_BRAND_*` variables defined in `landing/.env`. The `landing/src/data/brand.ts` module centralizes the parsing and can be extended to other fields.
+- **Internal app (Next.js)** – create `app/.env.local` from `app/.env.local.example` and set `NEXT_PUBLIC_BRAND_*` / `NEXT_PUBLIC_PWA_*` to update headers, login, and PWA metadata without touching the code.
+- **Printed material and seeds** – the menus in `a4-menu/` and the Django commands in `service/menu/management/commands/` already use neutral names (e.g., “Camarão da Casa”). Adjust the texts freely or replicate your menu.
+- **Collections + driver** – `docs/*.postman_collection.json` and `driver/README.md` now describe the API generically. Update the sample fields (`company_name`, `company_address`, etc.) for each client.
+  
 
 ## Status & next steps
 
@@ -95,3 +96,19 @@ git submodule update --init --recursive
 - Tangible gains in service speed and bill settlement.
 - Roadmap: automated tests, monitoring, new operational reports.
 - The project remains active and keeps evolving.
+
+## Preview 
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/10f04383-28e0-4f73-89e9-b15dab5cba23" alt="Tela 1" width="220" style="margin:0 10px 10px 0;" />
+  <img src="https://github.com/user-attachments/assets/421f51b5-0a7e-44a9-a127-a4ad8d2e5de5" alt="Tela 2" width="220" style="margin:0 10px 10px 0;" />
+  <img src="https://github.com/user-attachments/assets/7d55acda-74c5-4636-bf1f-adc53622673e" alt="Tela 7" width="220" style="margin:0 10px 10px 0;" />
+  <img src="https://github.com/user-attachments/assets/62ff2b3c-808c-4f5a-b68b-14d5bfb346f8" alt="Tela 3" width="220" style="margin:0 10px 10px 0;" />
+  <img src="https://github.com/user-attachments/assets/157d4edc-26e3-4fdb-913b-198e1c224ad6" alt="Tela 4" width="220" style="margin:0 10px 10px 0;" />
+  <img src="https://github.com/user-attachments/assets/7b195907-9cb4-4e36-8a11-27bc7f0fe5b3" alt="Tela 5" width="220" style="margin:0 10px 10px 0;" />
+  <img src="https://github.com/user-attachments/assets/00b29dab-56b7-488c-a7bc-d4aba30ff790" alt="Tela 6" width="220" style="margin:0 10px 10px 0;" />
+</div>
+
+
+
+
